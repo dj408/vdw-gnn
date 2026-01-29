@@ -1,0 +1,19 @@
+model:
+  model_key: tfn
+  equivar_pred: true
+  comparison_model_num_layers: 2
+  node_embedding_dim: 16
+  # TFN-specific
+  tfn_max_ell: 2
+  tfn_mlp_dim: 128
+  tfn_unbiased_vector_pred_head: true
+  tfn_radial_mode: gaussian
+  tfn_radial_mlp_hidden: [128, 128]
+  tfn_radial_mlp_activation: swish
+  # Lifted 3D wind vectors have components roughly in [-16, 16], so ||v_i - v_j|| can be ~55.4.
+        # Use a cutoff comfortably above this to avoid near-zero radial weights.
+  tfn_r_max: 64.0
+
+  # These only apply if tfn_radial_mode is 'bessel_cutoff'
+  # tfn_num_bessel: 8
+  # tfn_num_polynomial_cutoff: 6
